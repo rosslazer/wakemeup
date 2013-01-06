@@ -4,6 +4,11 @@ Wakemeup::Application.routes.draw do
 
   # Sample of regular route:
      match 'wake/index' => 'wake#index'
+     match 'wake/timezone' => 'wake#timezone'
+     match 'wake/time' => 'wake#time'
+     match 'wake/ampm' => 'wake#ampm'
+     match 'wake/confirm' => 'wake#confirm'
+     
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
