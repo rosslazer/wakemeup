@@ -3,7 +3,7 @@ class WakeController < ApplicationController
 	def index
 		#ask for timezone send data to controller
 				@ix = Telapi::InboundXml.new do
-		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/timezone.xml',
+		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/timezone.xml',
 		         :method      => 'POST',
 		         :numDigits   => '1',
 		         :finishOnKey => '#') {
@@ -23,7 +23,7 @@ end
 	def timezone
 		#parse time zone and ask for time
 		@ix = Telapi::InboundXml.new do
-		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/time.xml',
+		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/time.xml',
 		         :method      => 'POST',
 		         :numDigits   => '4',
 		         :finishOnKey => '#') {
@@ -39,7 +39,7 @@ end
 
 	def time
 		@ix = Telapi::InboundXml.new do
-		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/ampm.xml',
+		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/ampm.xml',
 		         :method      => 'POST',
 		         :numDigits   => '1',
 		         :finishOnKey => '#') {
