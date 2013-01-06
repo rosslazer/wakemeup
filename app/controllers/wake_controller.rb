@@ -11,7 +11,12 @@ class WakeController < ApplicationController
 		    and 4 for PST followed by pound'
   }
 		
+		 
+  end
+  respond_to do |format|  
+    format.xml { render :xml => @ix.response }  
 	end
+
 end
 
 
