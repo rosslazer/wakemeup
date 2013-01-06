@@ -4,8 +4,8 @@ class WakeController < ApplicationController
 		#ask for timezone send data to controller
 
 		    usersnumber = params["From"]
-			newuser = Caller.new
-		    newuser.number = usersnumber
+			@caller = Caller.new
+		    @caller.number = usersnumber
 
 				@ix = Telapi::InboundXml.new do
 		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/timezone.xml',
@@ -33,9 +33,9 @@ end
 
 		timezone = params["Digits"]
 
-		uu = Caller.where(number = usersnumber)
+		@user = Caller.where(:number => usersnumber)
 
-		uu.timezone = timezone
+		@user.timezone = timezone
 
 
 		@ix = Telapi::InboundXml.new do
