@@ -4,7 +4,7 @@ class WakeController < ApplicationController
 		#ask for timezone send data to controller
 
 		    usersnumber = params["From"]
-		    usersnumber = Caller.new
+			newuser = Caller.new
 		    newuser.number = usersnumber
 
 				@ix = Telapi::InboundXml.new do
