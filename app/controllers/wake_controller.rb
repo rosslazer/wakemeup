@@ -108,13 +108,56 @@ end
 	elsif time.length == 4
 		time[1] += ":"
 	end
-	user.time = Time.zone.parse("#{time} #{user.timezone}")
+	user.time = user.timezone
 	user.save
 
 	end
 
 	def ampm
 		#parse ampm and ask for confirm
+
+#check length of time, if 3 digits put ":" after 1st character else after 2nd character
+		#then convert time to UTC
+		@ix = Telapi::InboundXml.new do
+		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/ampm.xml',
+		         :method      => 'POST',
+		         :numDigits   => '1',
+		         :finishOnKey => '#') {
+		    Say 'Please enter 1 for am or 2 for pm'
+  }
+		
+		 
+  end
+  respond_to do |format|  
+    format.xml { render :xml => @ix.response }  
+	end
+	usersnumber = params["From"]
+
+
+	ampm = params["Digits"] 
+	user = Caller.where(:number => usersnumber).first
+	tod = ""
+
+	if ampm == "1"
+		user.ampm = "AM"
+	elsif ampm == "2"
+		user.ampm = "PM"
+	end
+			
+
+	user.time = Time.zone.parse("#{time} #{user.ampm} #{user.timezone}")
+	user.save
+
+
+
+
+
+
+
+
+
+
+
 	end
 
 	def confirm
