@@ -48,7 +48,7 @@ end
     format.xml { render :xml => @ix.response }  
 	end
 
-	
+
 		usersnumber = params["From"]
 
 
@@ -57,7 +57,7 @@ end
 		@user = Caller.where(:number => usersnumber).first
 
 		@user.timezone = @timezone
-		@user.save!
+		@user.save
 
 	end
 
