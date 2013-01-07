@@ -154,7 +154,6 @@ end
 
 	def confirm
 
-		usersnumber = params["From"]
 
 		@ix = Telapi::InboundXml.new do
 		  Gather(:action      => '',
@@ -169,9 +168,13 @@ end
   respond_to do |format|  
     format.xml { render :xml => @ix.response }  
 	end
+usersnumber = params["From"]
+user = Caller.where(:number => usersnumber).first
+
+
 
 #schedtime= Time.parse("#{Date.tomorrow} #{time} #{user.ampm} #{user.timezone}")
-schedtime= Time.parse("#{Date.today} #{time} #{user.ampm} #{user.timezone}")
+schedtime= Time.parse("#{Date.today} #{user.time} #{user.ampm} #{user.timezone}")
 
 
 scheduler = Rufus::Scheduler.start_new
