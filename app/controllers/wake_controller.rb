@@ -108,7 +108,7 @@ end
 	elsif time.length == 4
 		time[1] += ":"
 	end
-	user.time = user.timezone
+	user.time = time
 	user.save
 
 	end
@@ -123,7 +123,7 @@ end
 		         :method      => 'POST',
 		         :numDigits   => '1',
 		         :finishOnKey => '#') {
-		    Say 'Please enter 1 for am or 2 for pm'
+		    Say 'Please enter 1 to confirm'
   }
 		
 		 
