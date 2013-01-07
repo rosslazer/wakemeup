@@ -33,16 +33,6 @@ end
 	def timezone
 		#parse time zone and ask for time
 
-		usersnumber = params["From"]
-
-
-		@timezone = params["Digits"]
-		@user = Caller.new
-		@user = Caller.where(:number => usersnumber).first
-
-		@user.timezone = @timezone
-		@user.save!
-
 
 		@ix = Telapi::InboundXml.new do
 		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/time.xml',
@@ -57,6 +47,18 @@ end
   respond_to do |format|  
     format.xml { render :xml => @ix.response }  
 	end
+
+	
+		usersnumber = params["From"]
+
+
+		@timezone = params["Digits"]
+		@user = Caller.new
+		@user = Caller.where(:number => usersnumber).first
+
+		@user.timezone = @timezone
+		@user.save!
+
 	end
 
 	def time
