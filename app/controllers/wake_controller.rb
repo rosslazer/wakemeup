@@ -56,12 +56,31 @@ end
 		@user = Caller.new
 		@user = Caller.where(:number => usersnumber).first
 
-		@user.timezone = @timezone
+		if @timezone == "1"
+			@user.timezone = "EST"
+
+		elsif @timezone == "2"
+			@user.timezone = "CST"
+
+		elsif @timezone == "3"
+			@user.timezone = "MST"
+
+		elsif @timezone == "4"
+			@user.timezone = "PST"
+
+		end
+
+
+	
+				
 		@user.save
 
 	end
 
 	def time
+
+		#check length of time, if 3 digits put ":" after 1st character else after 2nd character
+		#then convert time to UTC
 		@ix = Telapi::InboundXml.new do
 		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/ampm.xml',
 		         :method      => 'POST',
@@ -75,6 +94,21 @@ end
   respond_to do |format|  
     format.xml { render :xml => @ix.response }  
 	end
+	usersnumber = params["From"]
+
+
+	time = params["Digits"] 
+	user = Caller.where(:number => usersnumber).first
+
+
+	if time.length == 3
+		time[0] += ":"
+	elsif time.length == 4
+		time[1] += ":"
+	end
+	user.time = @Time.zone.parse("#{time} #{user.timezone}")
+	user.save
+
 	end
 
 	def ampm
