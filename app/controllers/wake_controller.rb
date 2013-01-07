@@ -185,7 +185,12 @@ scheduler.at "#{schedtime}" do
 
   Telapi::Call.make(usersnumber, '(201) 604-4992', 'https://www.telapi.com/data/inboundxml/404c735f21d00fee39a13210d54844f3cec069c7')
 end
+#Todo
+#When calling the user ask them to press 1, if it is not pressed after 5 seconds
+#it will hangup and call them again
 
+#Cool idea
+#Let the user record a message and it will call a friend if they do not pickup
 
 
 	end
