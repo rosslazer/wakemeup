@@ -6,6 +6,7 @@ class WakeController < ApplicationController
 		    usersnumber = params["From"]
 			@caller = Caller.new
 		    @caller.number = usersnumber
+		    @caller.save
 
 				@ix = Telapi::InboundXml.new do
 		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/timezone.xml',
