@@ -141,15 +141,12 @@ class WakeController < ApplicationController
 	def confirm
 		usersnumber = params["From"]
 
-		user = Caller.where(:number => usersnumber).first
-		confirmed_time = "Tomorrow at #{user.time} #{user.ampm} #{user.timezone} "
-
 		@ix = Telapi::InboundXml.new do
 		  Gather(:action      => '',
 		         :method      => 'POST',
 		         :numDigits   => '1',
 		         :finishOnKey => '#') {
-		    Say "Thank you for confirming your wake up call #{confirmed_time} "
+		    Say 'Thank you for confirming'
   		}		 
   		end
 
@@ -157,6 +154,7 @@ class WakeController < ApplicationController
 	   		format.xml { render :xml => @ix.response }  
 		end
 
+		user = Caller.where(:number => usersnumber).first
 
 		#schedtime= Time.parse("#{Date.tomorrow} #{time} #{user.ampm} #{user.timezone}")
 		schedtime= Time.parse("#{Date.today} #{user.time} #{user.ampm} #{user.timezone}")
