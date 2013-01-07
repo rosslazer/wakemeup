@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106230949) do
+ActiveRecord::Schema.define(:version => 20130107054213) do
 
   create_table "callers", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "number"
     t.string   "timezone"
-    t.time     "time"
+    t.string   "time"
     t.string   "ampm"
   end
 
