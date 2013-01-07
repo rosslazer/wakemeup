@@ -41,7 +41,7 @@ end
 		@user = Caller.where(:number => usersnumber).first
 
 		@user.timezone = @timezone
-		@user.save
+		@user.save!
 
 
 		@ix = Telapi::InboundXml.new do
