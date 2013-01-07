@@ -22,9 +22,11 @@ class WakeController < ApplicationController
 
 
 		    usersnumber = params["From"]
-			@caller = Caller.new
-		    @caller.number = usersnumber
-		    @caller.save
+			#@caller = Caller.new
+		    #@caller.number = usersnumber
+		    #@caller.save
+
+		    @caller = Caller.where(:number => usersnumber).first_or_create
 
 
 end
@@ -53,7 +55,7 @@ end
 
 
 		@timezone = params["Digits"]
-		@user = Caller.new
+		#@user = Caller.new
 		@user = Caller.where(:number => usersnumber).first
 
 		if @timezone == "1"
