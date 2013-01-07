@@ -106,7 +106,7 @@ end
 	elsif time.length == 4
 		time[1] += ":"
 	end
-	user.time = @Time.zone.parse("#{time} #{user.timezone}")
+	user.time = Time.zone.parse("#{time} #{user.timezone}")
 	user.save
 
 	end
