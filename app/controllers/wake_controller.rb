@@ -119,7 +119,7 @@ end
 #check length of time, if 3 digits put ":" after 1st character else after 2nd character
 		#then convert time to UTC
 		@ix = Telapi::InboundXml.new do
-		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/ampm.xml',
+		  Gather(:action      => 'http://afternoon-badlands-6611.herokuapp.com/wake/confirm.xml',
 		         :method      => 'POST',
 		         :numDigits   => '1',
 		         :finishOnKey => '#') {
@@ -145,23 +145,46 @@ end
 	end
 			
 	time = user.time
-	user.time = Time.zone.parse("#{time} #{user.ampm} #{user.timezone}")
+	#user.time = Time.zone.parse("#{time} #{user.ampm} #{user.timezone}")
 	user.save
-
-
-
-
-
-
-
-
 
 
 
 	end
 
 	def confirm
-		#parse confirm and thank the user
+
+		usersnumber = params["From"]
+
+		@ix = Telapi::InboundXml.new do
+		  Gather(:action      => '',
+		         :method      => 'POST',
+		         :numDigits   => '1',
+		         :finishOnKey => '#') {
+		    Say 'Thank you for confirming'
+  }
+		
+		 
+  end
+  respond_to do |format|  
+    format.xml { render :xml => @ix.response }  
+	end
+
+#schedtime= Time.parse("#{Date.tomorrow} #{time} #{user.ampm} #{user.timezone}")
+schedtime= Time.parse("#{Date.today} #{time} #{user.ampm} #{user.timezone}")
+
+
+scheduler = Rufus::Scheduler.start_new
+
+#Date.tomorrow + " " + 
+#scheduler.at "#{Date.tomorrow} #{schedtime}" do
+scheduler.at "#{schedtime}" do
+
+  Telapi::Call.make(usersnumber, '(201) 604-4992', 'https://www.telapi.com/data/inboundxml/404c735f21d00fee39a13210d54844f3cec069c7')
+end
+
+
+
 	end
 
 end

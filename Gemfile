@@ -32,6 +32,8 @@ gem 'jquery-rails'
 
 gem 'telapi'
 
+gem 'rufus-scheduler'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
