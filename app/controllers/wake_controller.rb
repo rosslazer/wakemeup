@@ -144,7 +144,7 @@ end
 		user.ampm = "PM"
 	end
 			
-
+	time = user.time
 	user.time = Time.zone.parse("#{time} #{user.ampm} #{user.timezone}")
 	user.save
 
