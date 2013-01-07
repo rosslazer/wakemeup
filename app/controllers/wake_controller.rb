@@ -149,7 +149,7 @@ class WakeController < ApplicationController
 		         :method      => 'POST',
 		         :numDigits   => '1',
 		         :finishOnKey => '#') {
-		    Say 'Thank you for confirming your wake up call #{confirmed_time}'
+		    Say "Thank you for confirming your wake up call #{confirmed_time} "
   		}		 
   		end
 
