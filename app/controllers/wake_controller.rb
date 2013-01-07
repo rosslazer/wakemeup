@@ -20,11 +20,11 @@ class WakeController < ApplicationController
     format.xml { render :xml => @ix.response }  
 	end
 
-	
+
 		    usersnumber = params["From"]
 			@caller = Caller.new
 		    @caller.number = usersnumber
-		    @caller.save!
+		    @caller.save
 
 
 end
@@ -36,12 +36,12 @@ end
 		usersnumber = params["From"]
 
 
-		timezone = params["Digits"]
+		@timezone = params["Digits"]
 		@user = Caller.new
-		@user = Caller.where(:number => usersnumber)
+		@user = Caller.where(:number => usersnumber).first
 
-		@user.timezone = timezone
-		@user.save!
+		@user.timezone = @timezone
+		@user.save
 
 
 		@ix = Telapi::InboundXml.new do
