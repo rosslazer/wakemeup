@@ -179,4 +179,9 @@ class WakeController < ApplicationController
 
 	end
 
+	def read_numebr
+
+	end
+	
+
 end
