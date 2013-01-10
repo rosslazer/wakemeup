@@ -156,8 +156,9 @@ class WakeController < ApplicationController
 
 		user = Caller.where(:number => usersnumber).first
 
-		#schedtime= Time.parse("#{Date.tomorrow} #{time} #{user.ampm} #{user.timezone}")
-		schedtime= Time.parse("#{Date.today} #{user.time} #{user.ampm} #{user.timezone}")
+		#Change back to this for testing purposes
+		#schedtime= Time.parse("#{Date.today} #{user.time} #{user.ampm} #{user.timezone}")
+		schedtime= Time.parse("#{Date.tomorrow} #{user.time} #{user.ampm} #{user.timezone}")
 
 		scheduler = Rufus::Scheduler.start_new
 
