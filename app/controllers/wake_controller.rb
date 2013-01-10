@@ -180,7 +180,7 @@ class WakeController < ApplicationController
 
 	end
 
-	def read_numebr_1
+	def read_number_1
 
 		usersnumber = params["From"]
 		digits_pressed = params["Digits"]
@@ -203,7 +203,7 @@ class WakeController < ApplicationController
 
 
 	end
-		def read_numebr_2
+		def read_number_2
 
 		usersnumber = params["From"]
 		digits_pressed = params["Digits"]
