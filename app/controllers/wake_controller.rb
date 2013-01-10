@@ -185,7 +185,7 @@ class WakeController < ApplicationController
 		usersnumber = params["From"]
 		digits_pressed = params["Digits"]
 
-		if digit == "1"
+		if digits_pressed == "1"
 			@ix = Telapi::InboundXml.new do
 			  Gather(:action      => '',
 			         :method      => 'POST',
@@ -208,7 +208,7 @@ class WakeController < ApplicationController
 		usersnumber = params["From"]
 		digits_pressed = params["Digits"]
 
-		if digit == "1"
+		if digits_pressed == "1"
 			@ix = Telapi::InboundXml.new do
 			  Gather(:action      => '',
 			         :method      => 'POST',

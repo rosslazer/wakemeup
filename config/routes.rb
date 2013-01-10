@@ -8,8 +8,8 @@ Wakemeup::Application.routes.draw do
      match 'wake/time' => 'wake#time'
      match 'wake/ampm' => 'wake#ampm'
      match 'wake/confirm' => 'wake#confirm'
-     match 'wake/read_numebr_1' => 'wake#read_numebr_1'
-     match 'wake/read_numebr_2' => 'wake#read_numebr_2'
+     match 'wake/read_number_1' => 'wake#read_number_1'
+     match 'wake/read_number_2' => 'wake#read_number_2'
      
   # Keep in mind you can assign values other than :controller and :action
 
