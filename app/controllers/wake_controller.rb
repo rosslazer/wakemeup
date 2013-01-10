@@ -157,8 +157,8 @@ class WakeController < ApplicationController
 		user = Caller.where(:number => usersnumber).first
 
 		#Change back to this for testing purposes
-		#schedtime= Time.parse("#{Date.today} #{user.time} #{user.ampm} #{user.timezone}")
-		schedtime= Time.parse("#{Date.tomorrow} #{user.time} #{user.ampm} #{user.timezone}")
+		schedtime= Time.parse("#{Date.today} #{user.time} #{user.ampm} #{user.timezone}")
+		#schedtime= Time.parse("#{Date.tomorrow} #{user.time} #{user.ampm} #{user.timezone}")
 
 		scheduler = Rufus::Scheduler.start_new
 
@@ -180,7 +180,49 @@ class WakeController < ApplicationController
 
 	end
 
-	def read_numebr
+	def read_numebr_1
+
+		usersnumber = params["From"]
+		digits_pressed = params["Digits"]
+
+		if digit == "1"
+			@ix = Telapi::InboundXml.new do
+			  Gather(:action      => '',
+			         :method      => 'POST',
+			         :numDigits   => '1',
+			         :finishOnKey => '#') {
+			    Say 'Thank you for confirming'
+	  		}		 
+	  		end
+	  		else
+	  			#hangup phone and call again with same prompt
+	  			Telapi::Call.make(usersnumber, usersnumber, 'Public URL:   https://www.telapi.com/data/inboundxml/4912f56aec6f0ac56bbb7fa9231e79891c48afc5
+')
+	  		end
+
+
+
+	end
+		def read_numebr_2
+
+		usersnumber = params["From"]
+		digits_pressed = params["Digits"]
+
+		if digit == "1"
+			@ix = Telapi::InboundXml.new do
+			  Gather(:action      => '',
+			         :method      => 'POST',
+			         :numDigits   => '1',
+			         :finishOnKey => '#') {
+			    Say 'Thank you for confirming'
+	  		}		 
+	  		end
+	  		else
+	  			#hangup phone and call again with same prompt
+	  			Telapi::Call.make(usersnumber, usersnumber, '')
+	  		end
+
+
 
 	end
 	
